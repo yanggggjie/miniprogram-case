@@ -1,6 +1,7 @@
 const LOADING_HEIGHT = 52;
 const LOAD_MORE_COUNT = 5;
 const LOAD_MORE_DELAY = 1200;
+const INIT_SCROLL_TOP = 200;
 
 const CHAT_TEMPLATES = [
   { isMe: false, text: '在吗？' },
@@ -42,7 +43,7 @@ const CHAT_TEMPLATES = [
   { isMe: false, text: '你每次都说明天😤' },
   { isMe: true, text: '这次是真的！我现在就放到包里' },
   { isMe: false, text: '好吧好吧，我再信你一次' },
-  { isMe: true, text: '放好了，截图给你看,' },
+  { isMe: true, text: '放好了，截图给你看' },
 ];
 
 let nextId = 1000;
@@ -90,7 +91,12 @@ Page({
 
   onLoad() {
     this.calcScrollViewHeight();
-    this.setData({ msgList: generateInitialMessages() });
+    this.setData({ msgList: generateInitialMessages() },()=>{
+      setTimeout(()=>{
+        this.setData({ scrollTop: INIT_SCROLL_TOP });
+      },200)
+    });
+    wx.setNavigationBarTitle({ title: this.data.isFixMode ? '前插闪动(fix)' : '前插闪动(bug)' });
   },
 
   calcScrollViewHeight() {
@@ -104,15 +110,17 @@ Page({
 
   toggleMode() {
     nextId = 1000;
+    const newIsFixMode = !this.data.isFixMode;
     this.setData({
-      isFixMode: !this.data.isFixMode,
+      isFixMode: newIsFixMode,
       msgList: generateInitialMessages(),
       tempMsgList: [],
       scrollY: true,
-      scrollTop: 0,
+      scrollTop: INIT_SCROLL_TOP,
       scrollWithAnimation: true,
       loadingMore: false,
     });
+    wx.setNavigationBarTitle({ title: newIsFixMode ? '前插闪动(fix)' : '前插闪动(bug)' });
   },
 
   onScroll(e) {

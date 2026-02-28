@@ -6,10 +6,6 @@
   background: #ededed;
 }
 
-.scroll-area {
-  overflow: hidden;
-}
-
 .loading-area {
   height: 52px;
   display: flex;

@@ -1,3 +1,13 @@
+问题描述
+
+解决方案
+
+效果对比
+
+论坛讨论
+
+
+
 1.scroll-view列表前插元素闪动
 问题描述
 scroll-view列表往前面插入元素，会直接滚动到最顶部，而不是保持在现有的位置
@@ -25,7 +35,25 @@ https://developers.weixin.qq.com/community/develop/doc/0008c46e0a04586d86e7dbd2e
 
 
 
-2.scroll-view onScroll bindscrolltoupper upper-threshold触发问题
+2.scroll-view滚动事件默认节流问题 
+影响bindscroll bindscrolltoupper bindscrolltolower
+
+问题描述
+scroll-view的滚动事件触发会默认节流，这就导致了快速滚动的时候bindscroll拿到的scrollTop不准确，bindscrolltoupper bindscrolltolower也受影响，因为
+有upper-threshold、lower-threshold的存在，可能节流后没有触发小于upper-threshold或者小于lower-threshold的事件。
+
+
+解决方案
+pagePath: scroll-view-throttle
+
+添加上，这个属性是隐藏的
+throttle="{{false}}"
+
+效果对比
+
+论坛讨论
+
+https://developers.weixin.qq.com/community/develop/doc/000acc286a8600611147b582e5fc00
 
 
 

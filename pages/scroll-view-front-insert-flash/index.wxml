@@ -1,12 +1,12 @@
 <view class="page">
   <block wx:if="{{!isFixMode}}">
     <scroll-view
-      class="scroll-area"
       style="height: {{scrollViewHeight}}px;"
       scroll-y="{{true}}"
       upper-threshold="50"
       bindscrolltoupper="onScrollToUpperBuggy"
       scroll-anchoring="{{true}}"
+      scroll-top="{{scrollTop}}"
       bounces="{{false}}"
       enhanced="{{true}}"
     >
@@ -20,7 +20,6 @@
 
   <block wx:elif="{{isFixMode}}">
     <scroll-view
-      class="scroll-area"
       style="height: {{scrollViewHeight}}px;"
       scroll-y="{{scrollY}}"
       scroll-top="{{scrollTop}}"
