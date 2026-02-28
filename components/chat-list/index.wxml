@@ -1,0 +1,4 @@
+<view wx:for="{{msgList}}" wx:key="id" class="msg-row {{item.isMe ? 'msg-right' : 'msg-left'}}">
+  <view class="avatar {{item.isMe ? 'avatar-me' : 'avatar-other'}}">{{item.isMe ? '我' : 'Ta'}}</view>
+  <view class="msg-bubble {{item.isMe ? 'bubble-me' : 'bubble-other'}}">{{item.text}}</view>
+</view>

@@ -1,0 +1,9 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading-area">加载中...</view>
+  <scroll-view wx:else style="height: 100vh;" scroll-y="{{true}}" enhanced="{{true}}" bounces="{{false}}">
+    <chat-list msgList="{{msgList}}" bindready="onChatListReady" />
+  </scroll-view>
+
+  <view class="render-time-display">渲染耗时: {{renderTime}}</view>
+  <view class="float-btn" bindtap="goToOtherPage">fix</view>
+</view>

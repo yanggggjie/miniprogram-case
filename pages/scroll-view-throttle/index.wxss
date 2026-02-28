@@ -1,0 +1,93 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #ededed;
+}
+
+.msg-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 12px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  width: 100vw;
+}
+
+.msg-left {
+  justify-content: flex-start;
+}
+
+.msg-right {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.avatar-other {
+  background: #576b95;
+}
+
+.avatar-me {
+  background: #07c160;
+}
+
+.msg-bubble {
+  margin: 0 8px;
+  max-width: 70%;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 17px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.bubble-other {
+  background: #fff;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.bubble-me {
+  background: #95ec69;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.scroll-top-display {
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 32px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #07c160;
+  font-size: 18px;
+  border-radius: 10px;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.float-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 80px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #07c160;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

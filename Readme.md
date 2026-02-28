@@ -46,8 +46,8 @@ scroll-view的滚动事件触发会默认节流，这就导致了快速滚动的
 解决方案
 pagePath: scroll-view-throttle
 
-添加上，这个属性是隐藏的
-throttle="{{false}}"
+添加上throttle="{{false}}"，这个属性是隐藏的，文档中没有体现，添加上就好了
+
 
 效果对比
 
@@ -57,8 +57,41 @@ https://developers.weixin.qq.com/community/develop/doc/000acc286a8600611147b582e
 
 
 
-3.使用了view占位后加载更慢
+3.使用了用时注入特性，使用view占位后加载更慢，在安卓机上很明显
+问题描述
+https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/placeholder.html#%E9%85%8D%E7%BD%AE
+{
+  "usingComponents": {
+    "comp-a": "../comp/compA",
+    "comp-b": "../comp/compB",
+    "comp-c": "../comp/compC"
+  },
+  "componentPlaceholder": {
+    "comp-a": "view",
+    "comp-b": "comp-c"
+  }
+}
+用时注入: 都某个comp-a处于x的条件渲染下，为了加快首屏，可以设置comp-a有view的占位符，如果首屏时x为false，那么可以加快首屏速度。
+但是如果首屏时x为true，那么会先渲染view再渲染comp-a导致了加载更慢，比不设置占位符还更慢。
 
+那么
+a: 如果x为false，那么可以加快首屏速度。
+b: 如果x为true，那么会先渲染view再渲染comp-a导致了加载更慢，比不设置占位符还更慢。
+c: 如果x为true，那么不设置占位符比设置占位符更快。即当x为true的时候，占位符是负优化。。。。
+
+
+解决方案
+
+效果对比
+
+论坛讨论
+
+文档链接
+
+
+
+
+用时注入
 
 4.录音器启动报错
 

@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/scroll-view-front-insert-flash/index"
+    "pages/scroll-view-front-insert-flash/index",
+    "pages/scroll-view-throttle/index",
+    "pages/component-placeholder-bug/index",
+    "pages/component-placeholder-fix/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

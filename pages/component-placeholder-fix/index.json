@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "chat-list": "/components/chat-list/index"
+  }
+}
