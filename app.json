@@ -4,7 +4,9 @@
     "pages/scroll-view-front-insert-flash/index",
     "pages/scroll-view-throttle/index",
     "pages/component-placeholder-bug/index",
-    "pages/component-placeholder-fix/index"
+    "pages/component-placeholder-fix/index",
+    "pages/recorder-start-bug/index",
+    "pages/recorder-start-fix/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

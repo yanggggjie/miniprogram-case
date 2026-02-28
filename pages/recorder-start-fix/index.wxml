@@ -1,0 +1,13 @@
+<view class="page">
+  <view class="error-banner" wx:if="{{showError}}">{{errorMsg}}</view>
+
+  <view class="status-text">{{statusText}}</view>
+
+  <view class="record-btn {{isTouching ? 'recording' : ''}}"
+    bindtouchstart="onRecordTouchStart"
+    bindtouchend="onRecordTouchEnd">
+    按住录音
+  </view>
+
+  <view class="float-btn" bindtap="goToOtherPage">bug</view>
+</view>

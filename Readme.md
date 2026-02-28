@@ -57,7 +57,7 @@ https://developers.weixin.qq.com/community/develop/doc/000acc286a8600611147b582e
 
 
 
-3.使用了用时注入特性，使用view占位后加载更慢，在安卓机上很明显
+3.用时注入 + componentPlaceholder 占位符优化
 问题描述
 https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/placeholder.html#%E9%85%8D%E7%BD%AE
 {
@@ -71,13 +71,14 @@ https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/plac
     "comp-b": "comp-c"
   }
 }
-用时注入: 都某个comp-a处于x的条件渲染下，为了加快首屏，可以设置comp-a有view的占位符，如果首屏时x为false，那么可以加快首屏速度。
-但是如果首屏时x为true，那么会先渲染view再渲染comp-a导致了加载更慢，比不设置占位符还更慢。
+用时注入（lazyCodeLoading: "requiredComponents"）场景下，组件代码按需求值。
+不设置占位符时，框架需要同步等待组件代码求值完成才能渲染，主线程长时间阻塞，首屏更慢。
+设置 componentPlaceholder 后，框架先渲染轻量的占位 view，组件代码异步求值完成后再替换为真正组件，首屏更快。
 
-那么
-a: 如果x为false，那么可以加快首屏速度。
-b: 如果x为true，那么会先渲染view再渲染comp-a导致了加载更慢，比不设置占位符还更慢。
-c: 如果x为true，那么不设置占位符比设置占位符更快。即当x为true的时候，占位符是负优化。。。。
+真机测试结论（安卓机上差异明显）：
+a: 不设置占位符 → 同步阻塞等待组件求值，首屏渲染慢（bug）。
+b: 设置 componentPlaceholder → 先占位后替换，首屏渲染快（fix）。
+c: 在用时注入 + 重组件场景下，componentPlaceholder 是正优化。
 
 
 解决方案
@@ -89,11 +90,24 @@ c: 如果x为true，那么不设置占位符比设置占位符更快。即当x�
 文档链接
 
 
-
-
 用时注入
 
 4.录音器启动报错
+
+问题描述
+
+录音器启动是异步的，启动需要时间，关闭也需要时间。
+并且一定要在已经启动的状态下进行关闭，已关闭的状态下进行启动，否则会报错。
+
+解决方案
+pagePath: recorder-start
+
+效果对比
+
+论坛讨论
+
+
+
 
 5.blur事件触发不及时
 
